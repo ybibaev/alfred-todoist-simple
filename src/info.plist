@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>alfred-todoist-simple</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>E053B624-0E5A-40D6-BC12-28DBDBD3CE8B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>64240F2E-6829-4B1C-A674-9927BB1182FB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Yaroslav Bibaev</string>
+	<key>description</key>
+	<string>Simple todoist workflow, nothing extra</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>todoist-simple</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>todo</string>
+				<key>subtext</key>
+				<string>todo: {query}</string>
+				<key>text</key>
+				<string>Add to Todoist Inbox</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>E053B624-0E5A-40D6-BC12-28DBDBD3CE8B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>curl "https://api.todoist.com/rest/v1/tasks" \
+    -X POST \
+    --data '{"content": "{query}", "due_lang": "en"}' \
+    -H "Content-Type: application/json" \
+    -H "X-Request-Id: $(uuidgen)" \
+    -H "Authorization: Bearer ${token}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>64240F2E-6829-4B1C-A674-9927BB1182FB</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>For the workflow to work correctly, set the "token" variable.
+
+To get a token, go to the integration settings section https://todoist.com/app/settings/integrations</string>
+	<key>uidata</key>
+	<dict>
+		<key>64240F2E-6829-4B1C-A674-9927BB1182FB</key>
+		<dict>
+			<key>xpos</key>
+			<integer>455</integer>
+			<key>ypos</key>
+			<integer>275</integer>
+		</dict>
+		<key>E053B624-0E5A-40D6-BC12-28DBDBD3CE8B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>215</integer>
+			<key>ypos</key>
+			<integer>265</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>token</key>
+		<string></string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>token</string>
+	</array>
+	<key>version</key>
+	<string>0.0.1</string>
+	<key>webaddress</key>
+	<string>https://github.com/ybibaev/alfred-todoist-simple</string>
+</dict>
+</plist>
