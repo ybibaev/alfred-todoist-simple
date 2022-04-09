@@ -1,1 +1,1 @@
-# alfred-todo
+# Simple todoist alfred workflow
