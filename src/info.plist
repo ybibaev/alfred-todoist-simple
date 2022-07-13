@@ -35,6 +35,34 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>curl "https://api.todoist.com/rest/v1/tasks" \
+    -X POST \
+    --data '{"content": "${1}", "due_lang": "en"}' \
+    -H "Content-Type: application/json" \
+    -H "X-Request-Id: $(uuidgen)" \
+    -H "Authorization: Bearer ${token}"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>64240F2E-6829-4B1C-A674-9927BB1182FB</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
@@ -53,67 +81,56 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<true/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>curl "https://api.todoist.com/rest/v1/tasks" \
-    -X POST \
-    --data '{"content": "{query}", "due_lang": "en"}' \
-    -H "Content-Type: application/json" \
-    -H "X-Request-Id: $(uuidgen)" \
-    -H "Authorization: Bearer ${token}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>64240F2E-6829-4B1C-A674-9927BB1182FB</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
-	<string>For the workflow to work correctly, set the "token" variable.
+	<string>To use the workflow, first get a token from the [integration settings section](https://todoist.com/app/settings/integrations).
 
-To get a token, go to the integration settings section https://todoist.com/app/settings/integrations</string>
+To add a task to Todoist Inbox, just type `todo buy milk` and press Enter.
+
+![](preview.png)</string>
 	<key>uidata</key>
 	<dict>
 		<key>64240F2E-6829-4B1C-A674-9927BB1182FB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>455</integer>
+			<real>455</real>
 			<key>ypos</key>
-			<integer>275</integer>
+			<real>265</real>
 		</dict>
 		<key>E053B624-0E5A-40D6-BC12-28DBDBD3CE8B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>215</integer>
+			<real>215</real>
 			<key>ypos</key>
-			<integer>265</integer>
+			<real>265</real>
 		</dict>
 	</dict>
-	<key>variables</key>
-	<dict>
-		<key>token</key>
-		<string></string>
-	</dict>
-	<key>variablesdontexport</key>
+	<key>userconfigurationconfig</key>
 	<array>
-		<string>token</string>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Get it at https://todoist.com/app/settings/integrations</string>
+			<key>label</key>
+			<string>API Token</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>token</string>
+		</dict>
 	</array>
 	<key>version</key>
-	<string>0.0.1</string>
+	<string>0.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/ybibaev/alfred-todoist-simple</string>
 </dict>
