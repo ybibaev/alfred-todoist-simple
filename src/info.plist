@@ -61,7 +61,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>curl "https://api.todoist.com/rest/v1/tasks" \
+				<string>curl "https://api.todoist.com/rest/v2/tasks" \
     -X POST \
     --data '{"content": "{query}", "due_lang": "en"}' \
     -H "Content-Type: application/json" \
