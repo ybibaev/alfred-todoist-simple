@@ -42,10 +42,15 @@
 				<key>script</key>
 				<string>curl "https://api.todoist.com/rest/v2/tasks" \
     -X POST \
-    --data '{"content": "{query}", "due_lang": "en"}' \
     -H "Content-Type: application/json" \
     -H "X-Request-Id: $(uuidgen)" \
-    -H "Authorization: Bearer ${token}"</string>
+    -H "Authorization: Bearer ${token}" \
+    --data @- &lt;&lt;EOF
+{
+ "content": "{query}",
+ "due_lang": "en"
+}
+EOF</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -132,7 +137,7 @@ To add a task to Todoist Inbox, just type `todo buy milk` and press Enter.
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.1.1</string>
+	<string>0.1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/ybibaev/alfred-todoist-simple</string>
 </dict>
