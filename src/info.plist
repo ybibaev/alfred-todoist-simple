@@ -8,6 +8,34 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
+		<key>64240F2E-6829-4B1C-A674-9927BB1182FB</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6C1FBE9C-25FC-4841-90B8-25F13956ECE3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6C1FBE9C-25FC-4841-90B8-25F13956ECE3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BBE283AC-DA0D-4C44-B6C5-23DDF4AD4694</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>26FD605D-63D9-4B12-8007-B1F374152A9B</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>E053B624-0E5A-40D6-BC12-28DBDBD3CE8B</key>
 		<array>
 			<dict>
@@ -35,6 +63,59 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>todoist-simple</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>BBE283AC-DA0D-4C44-B6C5-23DDF4AD4694</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string>{query}</string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>^Error:.+</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>26FD605D-63D9-4B12-8007-B1F374152A9B</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>6C1FBE9C-25FC-4841-90B8-25F13956ECE3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<true/>
 				<key>escaping</key>
@@ -45,12 +126,19 @@
     -H "Content-Type: application/json" \
     -H "X-Request-Id: $(uuidgen)" \
     -H "Authorization: Bearer ${token}" \
+    -f \
+    -m 10 \
     --data @- &lt;&lt;EOF
 {
  "content": "{query}",
  "due_lang": "en"
 }
-EOF</string>
+EOF
+
+if [ $? -ne 0 ]; then
+    echo "Error: todoist-simple failed, possibly due to a problem with the internet connection."
+    exit 1
+fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -102,6 +190,20 @@ To add a task to Todoist Inbox, just type `todo buy milk` and press Enter.
 			<key>ypos</key>
 			<real>265</real>
 		</dict>
+		<key>6C1FBE9C-25FC-4841-90B8-25F13956ECE3</key>
+		<dict>
+			<key>xpos</key>
+			<real>255</real>
+			<key>ypos</key>
+			<real>135</real>
+		</dict>
+		<key>BBE283AC-DA0D-4C44-B6C5-23DDF4AD4694</key>
+		<dict>
+			<key>xpos</key>
+			<real>410</real>
+			<key>ypos</key>
+			<real>105</real>
+		</dict>
 		<key>E053B624-0E5A-40D6-BC12-28DBDBD3CE8B</key>
 		<dict>
 			<key>xpos</key>
@@ -137,7 +239,7 @@ To add a task to Todoist Inbox, just type `todo buy milk` and press Enter.
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.1.2</string>
+	<string>0.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/ybibaev/alfred-todoist-simple</string>
 </dict>
